@@ -16,26 +16,22 @@
  * along with this program. If not, see https://github.com/TamrielNetwork/VitalBack/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalcraft.utils;
+package com.tamrielnetwork.vitalback.storage;
 
-import com.tamrielnetwork.vitalcraft.VitalCraft;
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
+import com.tamrielnetwork.vitalback.VitalBack;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
+public abstract class BackStorage {
 
-public class Chat {
+	protected final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 
-	private static final VitalCraft main = JavaPlugin.getPlugin(VitalCraft.class);
+	public abstract Location loadBack(@NotNull Player player);
 
-	public static void sendMessage(@NotNull CommandSender player, @NotNull String message) {
-		player.sendMessage(replaceColors(Objects.requireNonNull(main.getMessages().getMessagesConf().getString(message))));
-	}
+	public abstract void saveBack(@NotNull Player player);
 
-	public static String replaceColors(@NotNull String string) {
-		return ChatColor.translateAlternateColorCodes('&', string);
-	}
+	public abstract void clear(@NotNull String playerUUID);
 
 }

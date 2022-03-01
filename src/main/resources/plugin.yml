@@ -1,15 +1,18 @@
-name: VitalCraft
+name: VitalBack
 version: @version@
-main: com.tamrielnetwork.vitalcraft.VitalCraft
+main: com.tamrielnetwork.vitalback.VitalBack
 api-version: 1.17
 authors: [ Tamriel Network ]
 website: https://tamriel.site
-description: Gives players the ability to open a crafting interface.
+description: Gives players the ability to teleport back to their last location.
 commands:
-  vitalcraft:
+  vitalback:
     description: "Main command"
-    usage: "/vitalcraft"
+    usage: "/vitalback"
 permissions:
-  vitalcraft.craft:
-    description: "Permission to toggle crafting interface"
+  vitalback.back:
+    description: "Permission to teleport back to last location"
+    default: op
+  vitalback.back.ondeath:
+    description: "Permission to teleport back to last location on death"
     default: op

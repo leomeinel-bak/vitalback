@@ -16,35 +16,18 @@
  * along with this program. If not, see https://github.com/TamrielNetwork/VitalBack/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalcraft.files;
+package com.tamrielnetwork.vitalback.utils.sql;
 
-import com.tamrielnetwork.vitalcraft.VitalCraft;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import com.tamrielnetwork.vitalback.VitalBack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
+public class Sql {
 
-public class Messages {
+	private static final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 
-	private final VitalCraft main = JavaPlugin.getPlugin(VitalCraft.class);
-	private final File messagesFile;
-	private final FileConfiguration messagesConf;
+	public static String getPrefix() {
 
-	public Messages() {
-		messagesFile = new File(main.getDataFolder(), "messages.yml");
-		saveMessagesFile();
-		messagesConf = YamlConfiguration.loadConfiguration(messagesFile);
-	}
-
-	private void saveMessagesFile() {
-		if (!messagesFile.exists()) {
-			main.saveResource("messages.yml", false);
-		}
-	}
-
-	public FileConfiguration getMessagesConf() {
-		return messagesConf;
+		return main.getConfig().getString("mysql.prefix");
 	}
 
 }

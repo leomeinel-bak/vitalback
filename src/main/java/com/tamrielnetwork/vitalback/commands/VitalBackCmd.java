@@ -16,16 +16,22 @@
  * along with this program. If not, see https://github.com/TamrielNetwork/VitalBack/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalcraft.commands;
+package com.tamrielnetwork.vitalback.commands;
 
-import com.tamrielnetwork.vitalcraft.utils.commands.Cmd;
+import com.tamrielnetwork.vitalback.VitalBack;
+import com.tamrielnetwork.vitalback.utils.commands.Cmd;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-public class VitalCraftCmd implements CommandExecutor {
+public class VitalBackCmd implements CommandExecutor {
+
+	private final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -33,18 +39,22 @@ public class VitalCraftCmd implements CommandExecutor {
 		if (Cmd.isArgsLengthNotEqualTo(sender, args, 0)) {
 			return true;
 		}
-		doCraft(sender);
+		doBack(sender);
 		return true;
 
 	}
 
-	private void doCraft(@NotNull CommandSender sender) {
-		Player senderPlayer = (Player) sender;
+	private void doBack(@NotNull CommandSender sender) {
 
-		if (Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, "vitalcraft.craft")) {
+		if (Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, "vitalback.back")) {
 			return;
 		}
-		senderPlayer.openWorkbench(senderPlayer.getLocation(), true);
+
+		Player senderPlayer = (Player) sender;
+		Location location = main.getSpawnStorage().loadBack(senderPlayer);
+
+		senderPlayer.teleport(location, PlayerTeleportEvent.TeleportCause.SPECTATE);
 
 	}
+
 }
