@@ -20,6 +20,7 @@ package com.tamrielnetwork.vitalback.commands;
 
 import com.tamrielnetwork.vitalback.VitalBack;
 import com.tamrielnetwork.vitalback.utils.commands.Cmd;
+import com.tamrielnetwork.vitalback.utils.commands.CmdSpec;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -46,10 +47,9 @@ public class VitalBackCmd implements CommandExecutor {
 
 	private void doBack(@NotNull CommandSender sender) {
 
-		if (Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, "vitalback.back")) {
+		if (CmdSpec.isInvalidCmd(sender, "vitalback.back")) {
 			return;
 		}
-
 		Player senderPlayer = (Player) sender;
 		Location location = main.getSpawnStorage().loadBack(senderPlayer);
 
