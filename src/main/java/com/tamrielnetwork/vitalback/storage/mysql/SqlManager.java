@@ -47,7 +47,7 @@ public class SqlManager {
 
 		try {
 			PreparedStatement statementSpawnTable = SqlManager.getConnection()
-					.prepareStatement("CREATE TABLE IF NOT EXISTS " + Sql.getPrefix() + "Spawn (`UUID` TEXT, `World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)");
+					.prepareStatement("CREATE TABLE IF NOT EXISTS " + Sql.getPrefix() + "Back (`UUID` TEXT, `World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)");
 			statementSpawnTable.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

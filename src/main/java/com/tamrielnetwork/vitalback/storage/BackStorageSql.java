@@ -46,7 +46,7 @@ public class BackStorageSql extends BackStorage {
 		World world = null;
 		int x = 0, y = 0, z = 0, yaw = 0, pitch = 0;
 
-		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + Sql.getPrefix() + "_Back")) {
+		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Back")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
 					if (!Objects.equals(rs.getString(1), playerUUID)) {
@@ -84,7 +84,7 @@ public class BackStorageSql extends BackStorage {
 
 		clear(playerUUID);
 
-		try (PreparedStatement insertStatement = SqlManager.getConnection().prepareStatement("INSERT INTO " + Sql.getPrefix() + "_Back (`UUID`, `World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+		try (PreparedStatement insertStatement = SqlManager.getConnection().prepareStatement("INSERT INTO " + Sql.getPrefix() + "Back (`UUID`, `World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
 			insertStatement.setString(1, playerUUID);
 			insertStatement.setString(2, location.getWorld().getName());
 			insertStatement.setInt(3, (int) location.getX());
@@ -101,7 +101,7 @@ public class BackStorageSql extends BackStorage {
 	@Override
 	public void clear(@NotNull String playerUUID) {
 
-		try (PreparedStatement deleteStatement = SqlManager.getConnection().prepareStatement("DELETE FROM " + Sql.getPrefix() + "_Back WHERE `UUID`=" + playerUUID)) {
+		try (PreparedStatement deleteStatement = SqlManager.getConnection().prepareStatement("DELETE FROM " + Sql.getPrefix() + "Back WHERE `UUID`=" + playerUUID)) {
 			deleteStatement.executeUpdate();
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
