@@ -4,7 +4,7 @@ storage-system: yaml
 mysql:
   host: "localhost"
   port: 3306
-  database: vitalspawn
-  username: "vitalspawn"
+  database: vitalback
+  username: "vitalback"
   password: ""
   prefix: "server_"
