@@ -32,17 +32,22 @@ public class CmdSpec {
 
 	private static final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 
-	public static void doDelay(@NotNull CommandSender sender, Location location) {
+	@SuppressWarnings ("ConstantConditions")
+	public static void doDelay(CommandSender sender, Location location) {
 
 		Player senderPlayer = (Player) sender;
 
-		if (!senderPlayer.hasPermission("vitalspawn.delay.bypass")) {
+		if (!sender.hasPermission("vitalspawn.delay.bypass")) {
 			String timeRemaining = String.valueOf(main.getConfig().getLong("delay.time"));
-			Chat.sendMessage(senderPlayer, ImmutableMap.of("%countdown%", timeRemaining), "countdown");
+			Chat.sendMessage(sender, ImmutableMap.of("%countdown%", timeRemaining), "countdown");
 			new BukkitRunnable() {
 
 				@Override
 				public void run() {
+					// @SuppressWarnings("ConstantConditions") - senderPlayer could be null after runnable
+					if (Cmd.isInvalidPlayer(senderPlayer)) {
+						return;
+					}
 
 					senderPlayer.teleport(location);
 				}
