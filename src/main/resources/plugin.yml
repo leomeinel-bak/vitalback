@@ -6,13 +6,16 @@ authors: [ Tamriel Network ]
 website: https://tamriel.site
 description: Gives players the ability to teleport back to their last location.
 commands:
-  vitalback:
+  back:
     description: "Main command"
-    usage: "/vitalback"
+    usage: "/back"
 permissions:
   vitalback.back:
     description: "Permission to teleport back to last location"
     default: op
   vitalback.back.ondeath:
     description: "Permission to teleport back to last location on death"
+    default: op
+  vitalback.delay.bypass:
+    description: "Permission to bypass delay"
     default: op

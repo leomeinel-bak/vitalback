@@ -40,7 +40,7 @@ public final class VitalBack extends JavaPlugin {
 
 		registerListeners();
 
-		Objects.requireNonNull(getCommand("vitalback")).setExecutor(new VitalBackCmd());
+		Objects.requireNonNull(getCommand("back")).setExecutor(new VitalBackCmd());
 
 		saveDefaultConfig();
 

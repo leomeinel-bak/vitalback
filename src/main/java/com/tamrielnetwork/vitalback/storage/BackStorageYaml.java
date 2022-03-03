@@ -48,7 +48,6 @@ public class BackStorageYaml extends BackStorage {
 		String playerUUID = player.getUniqueId().toString();
 
 		if (backConf.getString("back." + playerUUID + ".world") == null) {
-			Bukkit.getLogger().severe("VitalBack cannot find world in back.yml");
 			return null;
 		}
 		World world = Bukkit.getWorld(Objects.requireNonNull(backConf.getString("back." + playerUUID + ".world")));

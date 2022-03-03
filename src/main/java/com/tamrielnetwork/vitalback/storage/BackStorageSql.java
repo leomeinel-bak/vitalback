@@ -53,11 +53,9 @@ public class BackStorageSql extends BackStorage {
 						continue;
 					}
 					if (rs.getString(1) == null) {
-						Bukkit.getLogger().severe("VitalBack cannot find playerUUID in database");
 						continue;
 					}
 					if (rs.getString(2) == null) {
-						Bukkit.getLogger().severe("VitalBack cannot find world in database");
 						continue;
 					}
 					world = Bukkit.getWorld(Objects.requireNonNull(rs.getString(2)));

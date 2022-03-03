@@ -18,11 +18,39 @@
 
 package com.tamrielnetwork.vitalback.utils.commands;
 
+import com.google.common.collect.ImmutableMap;
+import com.tamrielnetwork.vitalback.VitalBack;
 import com.tamrielnetwork.vitalback.utils.Chat;
+import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 public class CmdSpec {
+
+	private static final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
+
+	public static void doDelay(@NotNull CommandSender sender, Location location) {
+
+		Player senderPlayer = (Player) sender;
+
+		if (!senderPlayer.hasPermission("vitalspawn.delay.bypass")) {
+			String timeRemaining = String.valueOf(main.getConfig().getLong("delay.time"));
+			Chat.sendMessage(senderPlayer, ImmutableMap.of("%countdown%", timeRemaining), "countdown");
+			new BukkitRunnable() {
+
+				@Override
+				public void run() {
+
+					senderPlayer.teleport(location);
+				}
+			}.runTaskLater(main, (main.getConfig().getLong("delay.time") * 20L));
+		} else {
+			senderPlayer.teleport(location);
+		}
+	}
 
 	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
 

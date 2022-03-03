@@ -1,3 +1,4 @@
+cmd: "&fUsage: &b/back"
+no-perms: "&cYou don't have enough permissions!"
 player-only: "&cThis command can only be executed by players!"
-no-perms: "&7You don't have enough permissions!"
-cmd: "cmd"
+countdown: "&fTeleporting in &b%countdown% &fseconds"

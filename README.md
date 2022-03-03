@@ -86,12 +86,12 @@ To get the plugin running on your server follow these simple steps.
 
 1. Permission: `vitalback.back`
 
-* Command: `/vitalback`
+* Command: `/back`
 * Description: Teleport back to last location
 
 2. Permission: `vitalback.back.ondeath`
 
-* Command: `/vitalback`
+* Command: `/back`
 * Description: Teleport back to last location on death
 
 ### Configuration - config.yml
