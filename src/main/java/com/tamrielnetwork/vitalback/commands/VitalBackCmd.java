@@ -19,6 +19,7 @@
 package com.tamrielnetwork.vitalback.commands;
 
 import com.tamrielnetwork.vitalback.VitalBack;
+import com.tamrielnetwork.vitalback.utils.Chat;
 import com.tamrielnetwork.vitalback.utils.commands.Cmd;
 import com.tamrielnetwork.vitalback.utils.commands.CmdSpec;
 import org.bukkit.Location;
@@ -51,6 +52,11 @@ public class VitalBackCmd implements CommandExecutor {
 		}
 		Player senderPlayer = (Player) sender;
 		Location location = main.getSpawnStorage().loadBack(senderPlayer);
+
+		if (location == null) {
+			Chat.sendMessage(sender, "no-back");
+			return;
+		}
 
 		CmdSpec.doDelay(sender, location);
 

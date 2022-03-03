@@ -81,11 +81,15 @@ public class BackStorageYaml extends BackStorage {
 	@Override
 	public void clear(@NotNull String playerUUID) {
 
-		for (String key : backConf.getKeys(false)) {
+		if (backConf.getConfigurationSection("back") == null) {
+			return;
+		}
+		for (String key : Objects.requireNonNull(backConf.getConfigurationSection("back")).getKeys(false)) {
 			if (Objects.equals(key, playerUUID)) {
-				backConf.set(key, null);
+				backConf.set("back." + key, null);
 			}
 		}
+		save();
 	}
 
 	public void save() {

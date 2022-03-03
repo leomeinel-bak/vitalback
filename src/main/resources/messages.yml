@@ -1,4 +1,5 @@
 cmd: "&fUsage: &b/back"
+no-back: "&cNo location to teleport to!"
 no-perms: "&cYou don't have enough permissions!"
 player-only: "&cThis command can only be executed by players!"
 countdown: "&fTeleporting in &b%countdown% &fseconds"
