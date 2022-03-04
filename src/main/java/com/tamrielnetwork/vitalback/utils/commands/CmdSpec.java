@@ -21,6 +21,7 @@ package com.tamrielnetwork.vitalback.utils.commands;
 import com.google.common.collect.ImmutableMap;
 import com.tamrielnetwork.vitalback.VitalBack;
 import com.tamrielnetwork.vitalback.utils.Chat;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -32,7 +33,6 @@ public class CmdSpec {
 
 	private static final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 
-	@SuppressWarnings ("ConstantConditions")
 	public static void doDelay(CommandSender sender, Location location) {
 
 		Player senderPlayer = (Player) sender;
@@ -44,7 +44,6 @@ public class CmdSpec {
 
 				@Override
 				public void run() {
-					// @SuppressWarnings("ConstantConditions") - senderPlayer could be null after runnable
 					if (Cmd.isInvalidPlayer(senderPlayer)) {
 						return;
 					}
