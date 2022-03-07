@@ -32,6 +32,7 @@ import java.util.Objects;
 
 public class BackStorageYaml extends BackStorage {
 
+	private static final String IOEXCEPTION = "VitalBack encountered an IOException while executing task";
 	private static final String BACK = "back.";
 	private static final String WORLD = ".world";
 	private final File backFile;
@@ -98,8 +99,8 @@ public class BackStorageYaml extends BackStorage {
 
 		try {
 			backConf.save(backFile);
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException ignored) {
+			Bukkit.getLogger().info(IOEXCEPTION);
 		}
 	}
 

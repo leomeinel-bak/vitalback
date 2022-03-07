@@ -67,7 +67,7 @@ public class BackStorageSql extends BackStorage {
 				}
 			}
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 			return null;
 		}
 		return new Location(world, x, y, z, yaw, pitch);
@@ -91,7 +91,7 @@ public class BackStorageSql extends BackStorage {
 			insertStatement.setInt(7, (int) location.getPitch());
 			insertStatement.executeUpdate();
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 		}
 	}
 
@@ -101,7 +101,7 @@ public class BackStorageSql extends BackStorage {
 		try (PreparedStatement deleteStatement = SqlManager.getConnection().prepareStatement("DELETE FROM " + Sql.getPrefix() + "Back WHERE `UUID`=" + "'" + playerUUID + "'")) {
 			deleteStatement.executeUpdate();
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 		}
 	}
 
