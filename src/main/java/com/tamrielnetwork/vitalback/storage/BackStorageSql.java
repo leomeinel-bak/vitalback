@@ -33,6 +33,8 @@ import java.util.Objects;
 
 public class BackStorageSql extends BackStorage {
 
+	private static final String SQLEXCEPTION = "VitalBack encountered an SQLException while executing task";
+
 	public BackStorageSql() {
 
 		new SqlManager();
@@ -44,18 +46,16 @@ public class BackStorageSql extends BackStorage {
 		String playerUUID = player.getUniqueId().toString();
 
 		World world = null;
-		int x = 0, y = 0, z = 0, yaw = 0, pitch = 0;
+		int x = 0;
+		int y = 0;
+		int z = 0;
+		int yaw = 0;
+		int pitch = 0;
 
 		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Back")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
-					if (!Objects.equals(rs.getString(1), playerUUID)) {
-						continue;
-					}
-					if (rs.getString(1) == null) {
-						continue;
-					}
-					if (rs.getString(2) == null) {
+					if (!Objects.equals(rs.getString(1), playerUUID) || rs.getString(1) == null || rs.getString(2) == null) {
 						continue;
 					}
 					world = Bukkit.getWorld(Objects.requireNonNull(rs.getString(2)));
@@ -66,9 +66,8 @@ public class BackStorageSql extends BackStorage {
 					pitch = rs.getInt(7);
 				}
 			}
-		} catch (SQLException throwables) {
-
-			throwables.printStackTrace();
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
 			return null;
 		}
 		return new Location(world, x, y, z, yaw, pitch);
@@ -91,8 +90,8 @@ public class BackStorageSql extends BackStorage {
 			insertStatement.setInt(6, (int) location.getYaw());
 			insertStatement.setInt(7, (int) location.getPitch());
 			insertStatement.executeUpdate();
-		} catch (SQLException throwables) {
-			throwables.printStackTrace();
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
 		}
 	}
 
@@ -101,8 +100,8 @@ public class BackStorageSql extends BackStorage {
 
 		try (PreparedStatement deleteStatement = SqlManager.getConnection().prepareStatement("DELETE FROM " + Sql.getPrefix() + "Back WHERE `UUID`=" + "'" + playerUUID + "'")) {
 			deleteStatement.executeUpdate();
-		} catch (SQLException throwables) {
-			throwables.printStackTrace();
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
 		}
 	}
 

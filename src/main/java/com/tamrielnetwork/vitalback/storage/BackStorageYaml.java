@@ -32,6 +32,8 @@ import java.util.Objects;
 
 public class BackStorageYaml extends BackStorage {
 
+	private static final String BACK = "back.";
+	private static final String WORLD = ".world";
 	private final File backFile;
 	private final FileConfiguration backConf;
 
@@ -47,15 +49,15 @@ public class BackStorageYaml extends BackStorage {
 
 		String playerUUID = player.getUniqueId().toString();
 
-		if (backConf.getString("back." + playerUUID + ".world") == null) {
+		if (backConf.getString(BACK + playerUUID + WORLD) == null) {
 			return null;
 		}
-		World world = Bukkit.getWorld(Objects.requireNonNull(backConf.getString("back." + playerUUID + ".world")));
-		int x = backConf.getInt("back." + playerUUID + ".x");
-		int y = backConf.getInt("back." + playerUUID + ".y");
-		int z = backConf.getInt("back." + playerUUID + ".z");
-		int yaw = backConf.getInt("back." + playerUUID + ".yaw");
-		int pitch = backConf.getInt("back." + playerUUID + ".pitch");
+		World world = Bukkit.getWorld(Objects.requireNonNull(backConf.getString(BACK + playerUUID + WORLD)));
+		int x = backConf.getInt(BACK + playerUUID + ".x");
+		int y = backConf.getInt(BACK + playerUUID + ".y");
+		int z = backConf.getInt(BACK + playerUUID + ".z");
+		int yaw = backConf.getInt(BACK + playerUUID + ".yaw");
+		int pitch = backConf.getInt(BACK + playerUUID + ".pitch");
 
 		return new Location(world, x, y, z, yaw, pitch);
 	}
@@ -68,12 +70,12 @@ public class BackStorageYaml extends BackStorage {
 
 		clear(playerUUID);
 
-		backConf.set("back." + playerUUID + ".world", location.getWorld().getName());
-		backConf.set("back." + playerUUID + ".x", (int) location.getX());
-		backConf.set("back." + playerUUID + ".y", (int) location.getY());
-		backConf.set("back." + playerUUID + ".z", (int) location.getZ());
-		backConf.set("back." + playerUUID + ".yaw", (int) location.getYaw());
-		backConf.set("back." + playerUUID + ".pitch", (int) location.getPitch());
+		backConf.set(BACK + playerUUID + WORLD, location.getWorld().getName());
+		backConf.set(BACK + playerUUID + ".x", (int) location.getX());
+		backConf.set(BACK + playerUUID + ".y", (int) location.getY());
+		backConf.set(BACK + playerUUID + ".z", (int) location.getZ());
+		backConf.set(BACK + playerUUID + ".yaw", (int) location.getYaw());
+		backConf.set(BACK + playerUUID + ".pitch", (int) location.getPitch());
 
 		save();
 	}
@@ -86,7 +88,7 @@ public class BackStorageYaml extends BackStorage {
 		}
 		for (String key : Objects.requireNonNull(backConf.getConfigurationSection("back")).getKeys(false)) {
 			if (Objects.equals(key, playerUUID)) {
-				backConf.set("back." + key, null);
+				backConf.set(BACK + key, null);
 			}
 		}
 		save();
