@@ -23,6 +23,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Sql {
 
+	private Sql() {
+		throw new IllegalStateException("Utility class");
+	}
+
 	private static final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 
 	public static String getPrefix() {

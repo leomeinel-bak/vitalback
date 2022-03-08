@@ -34,6 +34,10 @@ import java.util.UUID;
 
 public class CmdSpec {
 
+	private CmdSpec() {
+		throw new IllegalStateException("Utility class");
+	}
+
 	private static final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 	private static final List<UUID> onActiveDelay = new ArrayList<>();
 
