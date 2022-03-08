@@ -31,11 +31,12 @@ import java.util.Objects;
 
 public class Chat {
 
+	private static final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
+
 	private Chat() {
+
 		throw new IllegalStateException("Utility class");
 	}
-
-	private static final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 
 	public static void sendMessage(@NotNull CommandSender player, @NotNull Map<String, String> placeholders, @NotNull String message) {
 

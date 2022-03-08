@@ -18,7 +18,6 @@
 
 package com.tamrielnetwork.vitalback.utils.commands;
 
-import com.google.common.collect.ImmutableMap;
 import com.tamrielnetwork.vitalback.VitalBack;
 import com.tamrielnetwork.vitalback.utils.Chat;
 import org.bukkit.Location;
@@ -34,12 +33,12 @@ import java.util.UUID;
 
 public class CmdSpec {
 
-	private CmdSpec() {
-		throw new IllegalStateException("Utility class");
-	}
-
 	private static final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 	private static final List<UUID> onActiveDelay = new ArrayList<>();
+	private CmdSpec() {
+
+		throw new IllegalStateException("Utility class");
+	}
 
 	public static void doDelay(CommandSender sender, Location location) {
 
@@ -52,7 +51,7 @@ public class CmdSpec {
 			}
 			onActiveDelay.add(senderPlayer.getUniqueId());
 			String timeRemaining = String.valueOf(main.getConfig().getLong("delay.time"));
-			Chat.sendMessage(sender, ImmutableMap.of("%countdown%", timeRemaining), "countdown");
+			Chat.sendMessage(sender, java.util.Map.of("%countdown%", timeRemaining), "countdown");
 			new BukkitRunnable() {
 
 				@Override
