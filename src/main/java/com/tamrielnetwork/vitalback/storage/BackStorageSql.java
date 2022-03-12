@@ -107,7 +107,7 @@ public class BackStorageSql
 		try (PreparedStatement deleteStatement = SqlManager.getConnection()
 		                                                   .prepareStatement("DELETE FROM ?" + "Back WHERE `UUID`=?")) {
 			deleteStatement.setString(1, Sql.getPrefix());
-			deleteStatement.setString(2, "'" + playerUUID + "'");
+			deleteStatement.setString(2, playerUUID);
 			deleteStatement.executeUpdate();
 		}
 		catch (SQLException ignored) {
