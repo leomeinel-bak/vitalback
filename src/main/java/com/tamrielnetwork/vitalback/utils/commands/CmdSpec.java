@@ -38,43 +38,40 @@ public class CmdSpec {
 	private static final List<UUID> onActiveDelay = new ArrayList<>();
 
 	private CmdSpec() {
-
 		throw new IllegalStateException("Utility class");
 	}
 
 	public static void doDelay(CommandSender sender, Location location) {
-
 		Player senderPlayer = (Player) sender;
-
 		if (!sender.hasPermission("vitalspawn.delay.bypass")) {
 			if (onActiveDelay.contains(senderPlayer.getUniqueId())) {
 				Chat.sendMessage(sender, "active-delay");
 				return;
 			}
 			onActiveDelay.add(senderPlayer.getUniqueId());
-			String timeRemaining = String.valueOf(main.getConfig().getLong("delay.time"));
+			String timeRemaining = String.valueOf(main.getConfig()
+			                                          .getLong("delay.time"));
 			Chat.sendMessage(sender, Map.of("%countdown%", timeRemaining), "countdown");
 			new BukkitRunnable() {
 
 				@Override
 				public void run() {
-
 					if (Cmd.isInvalidPlayer(senderPlayer)) {
 						onActiveDelay.remove(senderPlayer.getUniqueId());
 						return;
 					}
-
 					senderPlayer.teleport(location);
 					onActiveDelay.remove(senderPlayer.getUniqueId());
 				}
-			}.runTaskLater(main, (main.getConfig().getLong("delay.time") * 20L));
-		} else {
+			}.runTaskLater(main, (main.getConfig()
+			                          .getLong("delay.time") * 20L));
+		}
+		else {
 			senderPlayer.teleport(location);
 		}
 	}
 
 	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
-
 		if (Cmd.isInvalidSender(sender)) {
 			Chat.sendMessage(sender, "player-only");
 			return true;
@@ -85,5 +82,4 @@ public class CmdSpec {
 		}
 		return false;
 	}
-
 }

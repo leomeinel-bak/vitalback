@@ -25,25 +25,21 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class PlayerDeath implements Listener {
+public class PlayerDeath
+		implements Listener {
 
 	private final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 
 	@EventHandler
 	public void onPlayerDeath(PlayerDeathEvent event) {
-
 		Player player = event.getPlayer();
-
 		if (!player.hasPermission("vitalback.back")) {
 			return;
 		}
-
 		if (!player.hasPermission("vitalback.back.ondeath")) {
 			return;
 		}
-
-		main.getSpawnStorage().saveBack(player);
-
+		main.getSpawnStorage()
+		    .saveBack(player);
 	}
-
 }

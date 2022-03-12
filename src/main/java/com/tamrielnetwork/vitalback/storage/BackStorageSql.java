@@ -31,28 +31,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class BackStorageSql extends BackStorage {
+public class BackStorageSql
+		extends BackStorage {
 
 	private static final String SQLEXCEPTION = "VitalBack encountered an SQLException while executing task";
 
 	public BackStorageSql() {
-
 		new SqlManager();
 	}
 
 	@Override
 	public Location loadBack(@NotNull Player player) {
-
-		String playerUUID = player.getUniqueId().toString();
-
+		String playerUUID = player.getUniqueId()
+		                          .toString();
 		World world = null;
 		int x = 0;
 		int y = 0;
 		int z = 0;
 		int yaw = 0;
 		int pitch = 0;
-
-		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Back")) {
+		try (PreparedStatement selectStatement = SqlManager.getConnection()
+		                                                   .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Back")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
 					if (!Objects.equals(rs.getString(1), playerUUID) || rs.getString(1) == null || rs.getString(2) == null) {
@@ -66,8 +65,10 @@ public class BackStorageSql extends BackStorage {
 					pitch = rs.getInt(7);
 				}
 			}
-		} catch (SQLException ignored) {
-			Bukkit.getLogger().warning(SQLEXCEPTION);
+		}
+		catch (SQLException ignored) {
+			Bukkit.getLogger()
+			      .warning(SQLEXCEPTION);
 			return null;
 		}
 		return new Location(world, x, y, z, yaw, pitch);
@@ -75,34 +76,37 @@ public class BackStorageSql extends BackStorage {
 
 	@Override
 	public void saveBack(@NotNull Player player) {
-
-		String playerUUID = player.getUniqueId().toString();
+		String playerUUID = player.getUniqueId()
+		                          .toString();
 		Location location = player.getLocation();
-
 		clear(playerUUID);
-
-		try (PreparedStatement insertStatement = SqlManager.getConnection().prepareStatement("INSERT INTO " + Sql.getPrefix() + "Back (`UUID`, `World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+		try (PreparedStatement insertStatement = SqlManager.getConnection()
+		                                                   .prepareStatement("INSERT INTO " + Sql.getPrefix() + "Back (`UUID`, `World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
 			insertStatement.setString(1, playerUUID);
-			insertStatement.setString(2, location.getWorld().getName());
+			insertStatement.setString(2, location.getWorld()
+			                                     .getName());
 			insertStatement.setInt(3, (int) location.getX());
 			insertStatement.setInt(4, (int) location.getY());
 			insertStatement.setInt(5, (int) location.getZ());
 			insertStatement.setInt(6, (int) location.getYaw());
 			insertStatement.setInt(7, (int) location.getPitch());
 			insertStatement.executeUpdate();
-		} catch (SQLException ignored) {
-			Bukkit.getLogger().warning(SQLEXCEPTION);
+		}
+		catch (SQLException ignored) {
+			Bukkit.getLogger()
+			      .warning(SQLEXCEPTION);
 		}
 	}
 
 	@Override
 	public void clear(@NotNull String playerUUID) {
-
-		try (PreparedStatement deleteStatement = SqlManager.getConnection().prepareStatement("DELETE FROM " + Sql.getPrefix() + "Back WHERE `UUID`=" + "'" + playerUUID + "'")) {
+		try (PreparedStatement deleteStatement = SqlManager.getConnection()
+		                                                   .prepareStatement("DELETE FROM " + Sql.getPrefix() + "Back WHERE `UUID`=" + "'" + playerUUID + "'")) {
 			deleteStatement.executeUpdate();
-		} catch (SQLException ignored) {
-			Bukkit.getLogger().warning(SQLEXCEPTION);
+		}
+		catch (SQLException ignored) {
+			Bukkit.getLogger()
+			      .warning(SQLEXCEPTION);
 		}
 	}
-
 }
