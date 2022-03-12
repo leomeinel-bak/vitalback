@@ -81,7 +81,8 @@ public class BackStorageSql
 		Location location = player.getLocation();
 		clear(playerUUID);
 		try (PreparedStatement insertStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("INSERT INTO " + Sql.getPrefix() + "Back (`UUID`, `World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+		                                                   .prepareStatement(
+				                                                   "INSERT INTO " + Sql.getPrefix() + "Back (`UUID`, `World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
 			insertStatement.setString(1, playerUUID);
 			insertStatement.setString(2, location.getWorld()
 			                                     .getName());
@@ -101,7 +102,8 @@ public class BackStorageSql
 	@Override
 	public void clear(@NotNull String playerUUID) {
 		try (PreparedStatement deleteStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("DELETE FROM " + Sql.getPrefix() + "Back WHERE `UUID`=" + "'" + playerUUID + "'")) {
+		                                                   .prepareStatement(
+				                                                   "DELETE FROM " + Sql.getPrefix() + "Back WHERE `UUID`=" + "'" + playerUUID + "'")) {
 			deleteStatement.executeUpdate();
 		}
 		catch (SQLException ignored) {
