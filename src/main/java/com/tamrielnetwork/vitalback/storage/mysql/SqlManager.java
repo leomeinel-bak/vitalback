@@ -53,9 +53,9 @@ public class SqlManager {
 		                    .getString("mysql.password");
 		enableConnection();
 		try (PreparedStatement statementSpawnTable = SqlManager.getConnection()
-		                                                       .prepareStatement(
-				                                                       "CREATE TABLE IF NOT EXISTS " + Sql.getPrefix()
-				                                                       + "Back (`UUID` TEXT, `World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)")) {
+		                                                       .prepareStatement("CREATE TABLE IF NOT EXISTS ?"
+		                                                                         + "Back (`UUID` TEXT, `World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)")) {
+			statementSpawnTable.setString(1, Sql.getPrefix());
 			statementSpawnTable.executeUpdate();
 		}
 		catch (SQLException ignored) {
