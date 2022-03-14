@@ -51,7 +51,8 @@ public class BackStorageSql
 		int yaw = 0;
 		int pitch = 0;
 		try (PreparedStatement selectStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Back")) {
+		                                                   .prepareStatement(
+				                                                   "SELECT * FROM " + Sql.getPrefix() + "Back")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
 					if (!Objects.equals(rs.getString(1), playerUUID) || rs.getString(1) == null
@@ -103,7 +104,8 @@ public class BackStorageSql
 	@Override
 	public void clear(@NotNull String playerUUID) {
 		try (PreparedStatement deleteStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("DELETE FROM " + Sql.getPrefix() + "Back WHERE `UUID`=?")) {
+		                                                   .prepareStatement("DELETE FROM " + Sql.getPrefix()
+		                                                                     + "Back WHERE `UUID`=?")) {
 			deleteStatement.setString(1, playerUUID);
 			deleteStatement.executeUpdate();
 		}
