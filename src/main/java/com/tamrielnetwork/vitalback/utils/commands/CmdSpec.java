@@ -72,14 +72,6 @@ public class CmdSpec {
 	}
 
 	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
-		if (Cmd.isInvalidSender(sender)) {
-			Chat.sendMessage(sender, "player-only");
-			return true;
-		}
-		if (Cmd.isNotPermitted(sender, perm)) {
-			Chat.sendMessage(sender, "cmd");
-			return true;
-		}
-		return false;
+		return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm);
 	}
 }
