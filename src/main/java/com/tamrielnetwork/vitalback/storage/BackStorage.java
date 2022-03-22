@@ -32,5 +32,5 @@ public abstract class BackStorage {
 
 	public abstract void saveBack(@NotNull Player player);
 
-	public abstract void clear(@NotNull String playerUUID);
+	protected abstract void clear(@NotNull String playerUUID);
 }

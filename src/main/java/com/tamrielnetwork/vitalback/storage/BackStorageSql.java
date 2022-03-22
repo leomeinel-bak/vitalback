@@ -102,7 +102,7 @@ public class BackStorageSql
 	}
 
 	@Override
-	public void clear(@NotNull String playerUUID) {
+	protected void clear(@NotNull String playerUUID) {
 		try (PreparedStatement deleteStatement = SqlManager.getConnection()
 		                                                   .prepareStatement("DELETE FROM " + Sql.getPrefix()
 		                                                                     + "Back WHERE `UUID`=?")) {

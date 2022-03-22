@@ -78,7 +78,7 @@ public class BackStorageYaml
 	}
 
 	@Override
-	public void clear(@NotNull String playerUUID) {
+	protected void clear(@NotNull String playerUUID) {
 		if (backConf.getConfigurationSection("back") == null) {
 			return;
 		}
@@ -88,10 +88,9 @@ public class BackStorageYaml
 				backConf.set(BACK + key, null);
 			}
 		}
-		save();
 	}
 
-	public void save() {
+	private void save() {
 		try {
 			backConf.save(backFile);
 		}
