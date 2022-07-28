@@ -10,7 +10,7 @@
 <!--suppress ALL -->
 <br />
 <p align="center">
-  <a href="https://github.com/TamrielNetwork/VitalBack">
+  <a href="https://github.com/LeoMeinel/VitalBack">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -19,14 +19,14 @@
   <p align="center">
     Teleport back to your last location on Spigot and Paper
     <br />
-    <a href="https://github.com/TamrielNetwork/VitalBack"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/LeoMeinel/VitalBack"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/TamrielNetwork/VitalBack">View Demo</a>
+    <a href="https://github.com/LeoMeinel/VitalBack">View Demo</a>
     ·
-    <a href="https://github.com/TamrielNetwork/VitalBack/issues">Report Bug</a>
+    <a href="https://github.com/LeoMeinel/VitalBack/issues">Report Bug</a>
     ·
-    <a href="https://github.com/TamrielNetwork/VitalBack/issues">Request Feature</a>
+    <a href="https://github.com/LeoMeinel/VitalBack/issues">Request Feature</a>
   </p>
 
 <!-- TABLE OF CONTENTS -->
@@ -135,7 +135,7 @@ active-delay: "&cYou are already trying to teleport!"
 
 ## Roadmap
 
-See the [open issues](https://github.com/TamrielNetwork/VitalBack/issues) for a list of proposed features (and known
+See the [open issues](https://github.com/LeoMeinel/VitalBack/issues) for a list of proposed features (and known
 issues).
 
 <!-- CONTRIBUTING -->
@@ -165,7 +165,7 @@ Leopold Meinel - [@TamrielN](https://twitter.com/TamrielN) - Twitter
 
 Leopold Meinel - [contact@tamriel.me](mailto:contact@tamriel.me) - eMail
 
-Project Link - [VitalBack](https://github.com/TamrielNetwork/VitalBack) - GitHub
+Project Link - [VitalBack](https://github.com/LeoMeinel/VitalBack) - GitHub
 
 <!-- ACKNOWLEDGEMENTS -->
 
@@ -175,26 +175,26 @@ Project Link - [VitalBack](https://github.com/TamrielNetwork/VitalBack) - GitHub
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[contributors-shield]: https://img.shields.io/github/contributors-anon/TamrielNetwork/VitalBack?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors-anon/LeoMeinel/VitalBack?style=for-the-badge
 
-[contributors-url]: https://github.com/TamrielNetwork/VitalBack/graphs/contributors
+[contributors-url]: https://github.com/LeoMeinel/VitalBack/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/TamrielNetwork/VitalBack?label=Forks&style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/LeoMeinel/VitalBack?label=Forks&style=for-the-badge
 
-[forks-url]: https://github.com/TamrielNetwork/VitalBack/network/members
+[forks-url]: https://github.com/LeoMeinel/VitalBack/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/TamrielNetwork/VitalBack?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/LeoMeinel/VitalBack?style=for-the-badge
 
-[stars-url]: https://github.com/TamrielNetwork/VitalBack/stargazers
+[stars-url]: https://github.com/LeoMeinel/VitalBack/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/TamrielNetwork/VitalBack?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/LeoMeinel/VitalBack?style=for-the-badge
 
-[issues-url]: https://github.com/TamrielNetwork/VitalBack/issues
+[issues-url]: https://github.com/LeoMeinel/VitalBack/issues
 
-[license-shield]: https://img.shields.io/github/license/TamrielNetwork/VitalBack?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/LeoMeinel/VitalBack?style=for-the-badge
 
-[license-url]: https://github.com/TamrielNetwork/VitalBack/blob/main/LICENSE
+[license-url]: https://github.com/LeoMeinel/VitalBack/blob/main/LICENSE
 
-[quality-shield]: https://img.shields.io/codefactor/grade/github/TamrielNetwork/VitalBack?style=for-the-badge
+[quality-shield]: https://img.shields.io/codefactor/grade/github/LeoMeinel/VitalBack?style=for-the-badge
 
-[quality-url]: https://www.codefactor.io/repository/github/TamrielNetwork/VitalBack
+[quality-url]: https://www.codefactor.io/repository/github/LeoMeinel/VitalBack
