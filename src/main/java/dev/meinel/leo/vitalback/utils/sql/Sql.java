@@ -16,30 +16,21 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalBack/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalback.listeners;
+package dev.meinel.leo.vitalback.utils.sql;
 
-import com.tamrielnetwork.vitalback.VitalBack;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import dev.meinel.leo.vitalback.VitalBack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class PlayerDeath
-		implements Listener {
+public class Sql {
 
-	private final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
+	private static final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 
-	@EventHandler
-	public void onPlayerDeath(PlayerDeathEvent event) {
-		Player player = event.getPlayer();
-		if (!player.hasPermission("vitalback.back")) {
-			return;
-		}
-		if (!player.hasPermission("vitalback.back.ondeath")) {
-			return;
-		}
-		main.getSpawnStorage()
-		    .saveBack(player);
+	private Sql() {
+		throw new IllegalStateException("Utility class");
+	}
+
+	public static String getPrefix() {
+		return main.getConfig()
+		           .getString("mysql.prefix");
 	}
 }

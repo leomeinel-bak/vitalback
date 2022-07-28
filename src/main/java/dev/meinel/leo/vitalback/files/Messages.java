@@ -16,30 +16,34 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalBack/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalback.listeners;
+package dev.meinel.leo.vitalback.files;
 
-import com.tamrielnetwork.vitalback.VitalBack;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerTeleportEvent;
+import dev.meinel.leo.vitalback.VitalBack;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class PlayerTeleport
-		implements Listener {
+import java.io.File;
+
+public class Messages {
 
 	private final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
+	private final File messagesFile;
+	private final FileConfiguration messagesConf;
 
-	@EventHandler
-	public void onPlayerTeleport(PlayerTeleportEvent event) {
-		Player player = event.getPlayer();
-		if (!player.hasPermission("vitalback.back")) {
-			return;
+	public Messages() {
+		messagesFile = new File(main.getDataFolder(), "messages.yml");
+		saveMessagesFile();
+		messagesConf = YamlConfiguration.loadConfiguration(messagesFile);
+	}
+
+	private void saveMessagesFile() {
+		if (!messagesFile.exists()) {
+			main.saveResource("messages.yml", false);
 		}
-		if (event.getCause() == PlayerTeleportEvent.TeleportCause.SPECTATE) {
-			return;
-		}
-		main.getSpawnStorage()
-		    .saveBack(player);
+	}
+
+	public FileConfiguration getMessagesConf() {
+		return messagesConf;
 	}
 }

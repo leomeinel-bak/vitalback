@@ -16,15 +16,15 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalBack/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalback;
+package dev.meinel.leo.vitalback;
 
-import com.tamrielnetwork.vitalback.commands.VitalBackCmd;
-import com.tamrielnetwork.vitalback.files.Messages;
-import com.tamrielnetwork.vitalback.listeners.PlayerDeath;
-import com.tamrielnetwork.vitalback.listeners.PlayerTeleport;
-import com.tamrielnetwork.vitalback.storage.BackStorage;
-import com.tamrielnetwork.vitalback.storage.BackStorageSql;
-import com.tamrielnetwork.vitalback.storage.BackStorageYaml;
+import dev.meinel.leo.vitalback.commands.VitalBackCmd;
+import dev.meinel.leo.vitalback.files.Messages;
+import dev.meinel.leo.vitalback.listeners.PlayerDeath;
+import dev.meinel.leo.vitalback.listeners.PlayerTeleport;
+import dev.meinel.leo.vitalback.storage.BackStorage;
+import dev.meinel.leo.vitalback.storage.BackStorageSql;
+import dev.meinel.leo.vitalback.storage.BackStorageYaml;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

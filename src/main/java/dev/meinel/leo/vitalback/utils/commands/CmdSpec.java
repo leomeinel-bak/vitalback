@@ -16,10 +16,10 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalBack/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalback.utils.commands;
+package dev.meinel.leo.vitalback.utils.commands;
 
-import com.tamrielnetwork.vitalback.VitalBack;
-import com.tamrielnetwork.vitalback.utils.Chat;
+import dev.meinel.leo.vitalback.VitalBack;
+import dev.meinel.leo.vitalback.utils.Chat;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

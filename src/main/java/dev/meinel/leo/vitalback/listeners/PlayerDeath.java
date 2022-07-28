@@ -16,34 +16,30 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalBack/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalback.files;
+package dev.meinel.leo.vitalback.listeners;
 
-import com.tamrielnetwork.vitalback.VitalBack;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import dev.meinel.leo.vitalback.VitalBack;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-
-public class Messages {
+public class PlayerDeath
+		implements Listener {
 
 	private final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
-	private final File messagesFile;
-	private final FileConfiguration messagesConf;
 
-	public Messages() {
-		messagesFile = new File(main.getDataFolder(), "messages.yml");
-		saveMessagesFile();
-		messagesConf = YamlConfiguration.loadConfiguration(messagesFile);
-	}
-
-	private void saveMessagesFile() {
-		if (!messagesFile.exists()) {
-			main.saveResource("messages.yml", false);
+	@EventHandler
+	public void onPlayerDeath(PlayerDeathEvent event) {
+		Player player = event.getPlayer();
+		if (!player.hasPermission("vitalback.back")) {
+			return;
 		}
-	}
-
-	public FileConfiguration getMessagesConf() {
-		return messagesConf;
+		if (!player.hasPermission("vitalback.back.ondeath")) {
+			return;
+		}
+		main.getSpawnStorage()
+		    .saveBack(player);
 	}
 }

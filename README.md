@@ -161,8 +161,6 @@ Distributed under the GNU General Public License v3.0. See `LICENSE` for more in
 
 ## Contact
 
-
-
 Leopold Meinel - [leo@meinel.dev](mailto:leo@meinel.dev) - eMail
 
 Project Link - [VitalBack](https://github.com/LeoMeinel/VitalBack) - GitHub

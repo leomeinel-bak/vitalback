@@ -16,12 +16,12 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalBack/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalback.commands;
+package dev.meinel.leo.vitalback.commands;
 
-import com.tamrielnetwork.vitalback.VitalBack;
-import com.tamrielnetwork.vitalback.utils.Chat;
-import com.tamrielnetwork.vitalback.utils.commands.Cmd;
-import com.tamrielnetwork.vitalback.utils.commands.CmdSpec;
+import dev.meinel.leo.vitalback.VitalBack;
+import dev.meinel.leo.vitalback.utils.Chat;
+import dev.meinel.leo.vitalback.utils.commands.Cmd;
+import dev.meinel.leo.vitalback.utils.commands.CmdSpec;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
