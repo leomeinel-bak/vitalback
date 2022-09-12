@@ -1,4 +1,5 @@
 <!-- PROJECT SHIELDS -->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -69,13 +70,13 @@ This plugin is perfect for any server not wanting their players having to rememb
 
 ### Features
 
-* Teleport back to last location
-* Teleport back to last location on death
+- Teleport back to last location
+- Teleport back to last location on death
 
 ### Built With
 
-* [Gradle 7](https://docs.gradle.org/7.4/release-notes.html)
-* [OpenJDK 17](https://openjdk.java.net/projects/jdk/17/)
+- [Gradle 7](https://docs.gradle.org/7.4/release-notes.html)
+- [OpenJDK 17](https://openjdk.java.net/projects/jdk/17/)
 
 <!-- GETTING STARTED -->
 
@@ -87,17 +88,17 @@ To get the plugin running on your server follow these simple steps.
 
 1. Permission: `vitalback.back`
 
-* Command: `/back`
-* Description: Teleport back to last location
+- Command: `/back`
+- Description: Teleport back to last location
 
 2. Permission: `vitalback.back.ondeath`
 
-* Command: `/back`
-* Description: Teleport back to last location on death
+- Command: `/back`
+- Description: Teleport back to last location on death
 
 3. Permission: `vitalback.delay.bypass`
 
-* Description: Bypass delay
+- Description: Bypass delay
 
 ### Configuration - config.yml
 
@@ -169,30 +170,19 @@ Project Link - [VitalBack](https://github.com/LeoMeinel/VitalBack) - GitHub
 
 ### Acknowledgements
 
-* [README.md - othneildrew](https://github.com/othneildrew/Best-README-Template)
+- [README.md - othneildrew](https://github.com/othneildrew/Best-README-Template)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
 [contributors-shield]: https://img.shields.io/github/contributors-anon/LeoMeinel/VitalBack?style=for-the-badge
-
 [contributors-url]: https://github.com/LeoMeinel/VitalBack/graphs/contributors
-
 [forks-shield]: https://img.shields.io/github/forks/LeoMeinel/VitalBack?label=Forks&style=for-the-badge
-
 [forks-url]: https://github.com/LeoMeinel/VitalBack/network/members
-
 [stars-shield]: https://img.shields.io/github/stars/LeoMeinel/VitalBack?style=for-the-badge
-
 [stars-url]: https://github.com/LeoMeinel/VitalBack/stargazers
-
 [issues-shield]: https://img.shields.io/github/issues/LeoMeinel/VitalBack?style=for-the-badge
-
 [issues-url]: https://github.com/LeoMeinel/VitalBack/issues
-
 [license-shield]: https://img.shields.io/github/license/LeoMeinel/VitalBack?style=for-the-badge
-
 [license-url]: https://github.com/LeoMeinel/VitalBack/blob/main/LICENSE
-
 [quality-shield]: https://img.shields.io/codefactor/grade/github/LeoMeinel/VitalBack?style=for-the-badge
-
 [quality-url]: https://www.codefactor.io/repository/github/LeoMeinel/VitalBack

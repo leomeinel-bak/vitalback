@@ -1,19 +1,11 @@
 /*
- * VitalBack is a Spigot Plugin that gives players the ability to teleport back to their last location.
- * Copyright © 2022 Leopold Meinel & contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see https://github.com/LeoMeinel/VitalBack/blob/main/LICENSE
+ * File: BackStorageYaml.java
+ * Author: Leopold Meinel (leo@meinel.dev)
+ * -----
+ * Copyright (c) 2022 Leopold Meinel & contributors
+ * SPDX ID: GPL-3.0-or-later
+ * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
+ * -----
  */
 
 package dev.meinel.leo.vitalback.storage;
@@ -48,7 +40,7 @@ public class BackStorageYaml
 	@Override
 	public Location loadBack(@NotNull Player player) {
 		String playerUUID = player.getUniqueId()
-		                          .toString();
+				.toString();
 		if (backConf.getString(BACK + playerUUID + WORLD) == null) {
 			return null;
 		}
@@ -64,11 +56,11 @@ public class BackStorageYaml
 	@Override
 	public void saveBack(@NotNull Player player) {
 		String playerUUID = player.getUniqueId()
-		                          .toString();
+				.toString();
 		Location location = player.getLocation();
 		clear(playerUUID);
 		backConf.set(BACK + playerUUID + WORLD, location.getWorld()
-		                                                .getName());
+				.getName());
 		backConf.set(BACK + playerUUID + ".x", (int) location.getX());
 		backConf.set(BACK + playerUUID + ".y", (int) location.getY());
 		backConf.set(BACK + playerUUID + ".z", (int) location.getZ());
@@ -83,7 +75,7 @@ public class BackStorageYaml
 			return;
 		}
 		for (String key : Objects.requireNonNull(backConf.getConfigurationSection("back"))
-		                         .getKeys(false)) {
+				.getKeys(false)) {
 			if (Objects.equals(key, playerUUID)) {
 				backConf.set(BACK + key, null);
 			}
@@ -93,10 +85,9 @@ public class BackStorageYaml
 	private void save() {
 		try {
 			backConf.save(backFile);
-		}
-		catch (IOException ignored) {
+		} catch (IOException ignored) {
 			Bukkit.getLogger()
-			      .info(IOEXCEPTION);
+					.info(IOEXCEPTION);
 		}
 	}
 }
