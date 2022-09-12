@@ -18,20 +18,20 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PlayerTeleport
-		implements Listener {
+        implements Listener {
 
-	private final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
+    private final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 
-	@EventHandler
-	public void onPlayerTeleport(PlayerTeleportEvent event) {
-		Player player = event.getPlayer();
-		if (!player.hasPermission("vitalback.back")) {
-			return;
-		}
-		if (event.getCause() == PlayerTeleportEvent.TeleportCause.SPECTATE) {
-			return;
-		}
-		main.getSpawnStorage()
-				.saveBack(player);
-	}
+    @EventHandler
+    public void onPlayerTeleport(PlayerTeleportEvent event) {
+        Player player = event.getPlayer();
+        if (!player.hasPermission("vitalback.back")) {
+            return;
+        }
+        if (event.getCause() == PlayerTeleportEvent.TeleportCause.SPECTATE) {
+            return;
+        }
+        main.getSpawnStorage()
+                .saveBack(player);
+    }
 }

@@ -23,31 +23,31 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 public class VitalBackCmd
-		implements CommandExecutor {
+        implements CommandExecutor {
 
-	private final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
+    private final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 
-	@Override
-	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
-			@NotNull String[] args) {
-		if (Cmd.isArgsLengthNotEqualTo(sender, args, 0)) {
-			return false;
-		}
-		doBack(sender);
-		return true;
-	}
+    @Override
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
+            @NotNull String[] args) {
+        if (Cmd.isArgsLengthNotEqualTo(sender, args, 0)) {
+            return false;
+        }
+        doBack(sender);
+        return true;
+    }
 
-	private void doBack(@NotNull CommandSender sender) {
-		if (CmdSpec.isInvalidCmd(sender, "vitalback.back")) {
-			return;
-		}
-		Player senderPlayer = (Player) sender;
-		Location location = main.getSpawnStorage()
-				.loadBack(senderPlayer);
-		if (location == null) {
-			Chat.sendMessage(sender, "no-back");
-			return;
-		}
-		CmdSpec.doDelay(sender, location);
-	}
+    private void doBack(@NotNull CommandSender sender) {
+        if (CmdSpec.isInvalidCmd(sender, "vitalback.back")) {
+            return;
+        }
+        Player senderPlayer = (Player) sender;
+        Location location = main.getSpawnStorage()
+                .loadBack(senderPlayer);
+        if (location == null) {
+            Chat.sendMessage(sender, "no-back");
+            return;
+        }
+        CmdSpec.doDelay(sender, location);
+    }
 }

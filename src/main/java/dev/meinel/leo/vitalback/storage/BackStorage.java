@@ -18,11 +18,11 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class BackStorage {
 
-	protected final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
+    protected final VitalBack main = JavaPlugin.getPlugin(VitalBack.class);
 
-	public abstract Location loadBack(@NotNull Player player);
+    public abstract Location loadBack(@NotNull Player player);
 
-	public abstract void saveBack(@NotNull Player player);
+    public abstract void saveBack(@NotNull Player player);
 
-	protected abstract void clear(@NotNull String playerUUID);
+    protected abstract void clear(@NotNull String playerUUID);
 }
