@@ -2,7 +2,7 @@
  * File: BackStorageSql.java
  * Author: Leopold Meinel (leo@meinel.dev)
  * -----
- * Copyright (c) 2022 Leopold Meinel & contributors
+ * Copyright (c) 2023 Leopold Meinel & contributors
  * SPDX ID: GPL-3.0-or-later
  * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
  * -----
@@ -23,10 +23,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class BackStorageSql
-        extends BackStorage {
+public class BackStorageSql extends BackStorage {
 
-    private static final String SQLEXCEPTION = "VitalBack encountered an SQLException while executing task";
+    private static final String SQLEXCEPTION =
+            "VitalBack encountered an SQLException while executing task";
 
     public BackStorageSql() {
         new SqlManager();
@@ -34,8 +34,7 @@ public class BackStorageSql
 
     @Override
     public Location loadBack(@NotNull Player player) {
-        String playerUUID = player.getUniqueId()
-                .toString();
+        String playerUUID = player.getUniqueId().toString();
         World world = null;
         int x = 0;
         int y = 0;
@@ -43,8 +42,7 @@ public class BackStorageSql
         int yaw = 0;
         int pitch = 0;
         try (PreparedStatement selectStatement = SqlManager.getConnection()
-                .prepareStatement(
-                        "SELECT * FROM " + Sql.getPrefix() + "Back")) {
+                .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Back")) {
             try (ResultSet rs = selectStatement.executeQuery()) {
                 while (rs.next()) {
                     if (!Objects.equals(rs.getString(1), playerUUID) || rs.getString(1) == null
@@ -60,8 +58,7 @@ public class BackStorageSql
                 }
             }
         } catch (SQLException ignored) {
-            Bukkit.getLogger()
-                    .warning(SQLEXCEPTION);
+            Bukkit.getLogger().warning(SQLEXCEPTION);
             return null;
         }
         return new Location(world, x, y, z, yaw, pitch);
@@ -69,16 +66,14 @@ public class BackStorageSql
 
     @Override
     public void saveBack(@NotNull Player player) {
-        String playerUUID = player.getUniqueId()
-                .toString();
+        String playerUUID = player.getUniqueId().toString();
         Location location = player.getLocation();
         clear(playerUUID);
-        try (PreparedStatement insertStatement = SqlManager.getConnection()
-                .prepareStatement("INSERT INTO " + Sql.getPrefix()
+        try (PreparedStatement insertStatement =
+                SqlManager.getConnection().prepareStatement("INSERT INTO " + Sql.getPrefix()
                         + "Back (`UUID`, `World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
             insertStatement.setString(1, playerUUID);
-            insertStatement.setString(2, location.getWorld()
-                    .getName());
+            insertStatement.setString(2, location.getWorld().getName());
             insertStatement.setInt(3, (int) location.getX());
             insertStatement.setInt(4, (int) location.getY());
             insertStatement.setInt(5, (int) location.getZ());
@@ -86,21 +81,18 @@ public class BackStorageSql
             insertStatement.setInt(7, (int) location.getPitch());
             insertStatement.executeUpdate();
         } catch (SQLException ignored) {
-            Bukkit.getLogger()
-                    .warning(SQLEXCEPTION);
+            Bukkit.getLogger().warning(SQLEXCEPTION);
         }
     }
 
     @Override
     protected void clear(@NotNull String playerUUID) {
         try (PreparedStatement deleteStatement = SqlManager.getConnection()
-                .prepareStatement("DELETE FROM " + Sql.getPrefix()
-                        + "Back WHERE `UUID`=?")) {
+                .prepareStatement("DELETE FROM " + Sql.getPrefix() + "Back WHERE `UUID`=?")) {
             deleteStatement.setString(1, playerUUID);
             deleteStatement.executeUpdate();
         } catch (SQLException ignored) {
-            Bukkit.getLogger()
-                    .warning(SQLEXCEPTION);
+            Bukkit.getLogger().warning(SQLEXCEPTION);
         }
     }
 }

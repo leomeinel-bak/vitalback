@@ -2,7 +2,7 @@
  * File: BackStorageYaml.java
  * Author: Leopold Meinel (leo@meinel.dev)
  * -----
- * Copyright (c) 2022 Leopold Meinel & contributors
+ * Copyright (c) 2023 Leopold Meinel & contributors
  * SPDX ID: GPL-3.0-or-later
  * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
  * -----
@@ -22,10 +22,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class BackStorageYaml
-        extends BackStorage {
+public class BackStorageYaml extends BackStorage {
 
-    private static final String IOEXCEPTION = "VitalBack encountered an IOException while executing task";
+    private static final String IOEXCEPTION =
+            "VitalBack encountered an IOException while executing task";
     private static final String BACK = "back.";
     private static final String WORLD = ".world";
     private final File backFile;
@@ -39,12 +39,12 @@ public class BackStorageYaml
 
     @Override
     public Location loadBack(@NotNull Player player) {
-        String playerUUID = player.getUniqueId()
-                .toString();
+        String playerUUID = player.getUniqueId().toString();
         if (backConf.getString(BACK + playerUUID + WORLD) == null) {
             return null;
         }
-        World world = Bukkit.getWorld(Objects.requireNonNull(backConf.getString(BACK + playerUUID + WORLD)));
+        World world = Bukkit
+                .getWorld(Objects.requireNonNull(backConf.getString(BACK + playerUUID + WORLD)));
         int x = backConf.getInt(BACK + playerUUID + ".x");
         int y = backConf.getInt(BACK + playerUUID + ".y");
         int z = backConf.getInt(BACK + playerUUID + ".z");
@@ -55,12 +55,10 @@ public class BackStorageYaml
 
     @Override
     public void saveBack(@NotNull Player player) {
-        String playerUUID = player.getUniqueId()
-                .toString();
+        String playerUUID = player.getUniqueId().toString();
         Location location = player.getLocation();
         clear(playerUUID);
-        backConf.set(BACK + playerUUID + WORLD, location.getWorld()
-                .getName());
+        backConf.set(BACK + playerUUID + WORLD, location.getWorld().getName());
         backConf.set(BACK + playerUUID + ".x", (int) location.getX());
         backConf.set(BACK + playerUUID + ".y", (int) location.getY());
         backConf.set(BACK + playerUUID + ".z", (int) location.getZ());
@@ -86,8 +84,7 @@ public class BackStorageYaml
         try {
             backConf.save(backFile);
         } catch (IOException ignored) {
-            Bukkit.getLogger()
-                    .info(IOEXCEPTION);
+            Bukkit.getLogger().info(IOEXCEPTION);
         }
     }
 }

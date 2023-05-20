@@ -22,8 +22,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
-public final class VitalBack
-        extends JavaPlugin {
+public final class VitalBack extends JavaPlugin {
 
     private BackStorage backStorage;
     private Messages messages;
@@ -31,33 +30,27 @@ public final class VitalBack
     @Override
     public void onEnable() {
         registerListeners();
-        Objects.requireNonNull(getCommand("back"))
-                .setExecutor(new VitalBackCmd());
+        Objects.requireNonNull(getCommand("back")).setExecutor(new VitalBackCmd());
         saveDefaultConfig();
         setupStorage();
         messages = new Messages();
-        Bukkit.getLogger()
-                .info("VitalBack v" + this.getPluginMeta().getVersion() + " enabled");
-        Bukkit.getLogger()
-                .info("Copyright (C) 2022 Leopold Meinel");
-        Bukkit.getLogger()
-                .info("This program comes with ABSOLUTELY NO WARRANTY!");
-        Bukkit.getLogger()
-                .info("This is free software, and you are welcome to redistribute it under certain conditions.");
+        Bukkit.getLogger().info("VitalBack v" + this.getPluginMeta().getVersion() + " enabled");
+        Bukkit.getLogger().info("Copyright (C) 2022 Leopold Meinel");
+        Bukkit.getLogger().info("This program comes with ABSOLUTELY NO WARRANTY!");
+        Bukkit.getLogger().info(
+                "This is free software, and you are welcome to redistribute it under certain conditions.");
         Bukkit.getLogger()
                 .info("See https://www.gnu.org/licenses/gpl-3.0-standalone.html for more details.");
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getLogger()
-                .info("VitalBack v" + this.getPluginMeta().getVersion() + " disabled");
+        Bukkit.getLogger().info("VitalBack v" + this.getPluginMeta().getVersion() + " disabled");
     }
 
     private void setupStorage() {
         String storageSystem = getConfig().getString("storage-system");
-        if (Objects.requireNonNull(storageSystem)
-                .equalsIgnoreCase("mysql")) {
+        if (Objects.requireNonNull(storageSystem).equalsIgnoreCase("mysql")) {
             this.backStorage = new BackStorageSql();
         } else {
             this.backStorage = new BackStorageYaml();
@@ -65,10 +58,8 @@ public final class VitalBack
     }
 
     private void registerListeners() {
-        getServer().getPluginManager()
-                .registerEvents(new PlayerDeath(), this);
-        getServer().getPluginManager()
-                .registerEvents(new PlayerTeleport(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDeath(), this);
+        getServer().getPluginManager().registerEvents(new PlayerTeleport(), this);
     }
 
     public Messages getMessages() {
